@@ -27,6 +27,20 @@ namespace HomeWork_NetCore3._0.Controllers
             return await _context.Course.ToListAsync();
         }
 
+        [HttpGet("courseStudent")]
+        public async Task<ActionResult<List<VwCourseStudents>>> GetVwCourseStudents()
+        {
+            var result = await _context.VwCourseStudents.ToListAsync();
+            return result;
+        }
+
+        [HttpGet("courseStudentCount")]
+        public async Task<ActionResult<List<VwCourseStudentCount>>> GetVwCourseStudentCount()
+        {
+            var result = await _context.VwCourseStudentCount.ToListAsync();
+            return result;
+        }
+
         // GET: api/Courses/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Course>> GetCourse(int id)
