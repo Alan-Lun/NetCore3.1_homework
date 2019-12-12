@@ -41,6 +41,15 @@ namespace HomeWork_NetCore3._0.Controllers
             return department;
         }
 
+        [HttpGet("vwDepartmentCourseCount")]
+        public async Task<ActionResult<List<VwDepartmentCourseCount>>> GetVwDepartmentCourseCount()
+        {
+            var result = _context.VwDepartmentCourseCount
+                .FromSqlInterpolated($"SELECT * FROM dbo.vwDepartmentCourseCount").AsNoTracking()
+                .ToList();
+            return result;
+        }
+
         // PUT: api/Departments/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
