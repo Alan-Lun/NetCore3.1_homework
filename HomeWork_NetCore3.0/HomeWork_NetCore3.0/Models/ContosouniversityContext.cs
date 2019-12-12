@@ -42,6 +42,8 @@ namespace HomeWork_NetCore3._0.Models
 
                 entity.Property(e => e.CourseId).HasColumnName("CourseID");
 
+                entity.Property(e => e.DateModified).HasDefaultValueSql("('0001-01-01T00:00:00.0000000')");
+
                 entity.Property(e => e.DepartmentId)
                     .HasColumnName("DepartmentID")
                     .HasDefaultValueSql("((1))");
@@ -88,6 +90,8 @@ namespace HomeWork_NetCore3._0.Models
                 entity.Property(e => e.DepartmentId).HasColumnName("DepartmentID");
 
                 entity.Property(e => e.Budget).HasColumnType("money");
+
+                entity.Property(e => e.DateModified).HasDefaultValueSql("('0001-01-01T00:00:00.0000000')");
 
                 entity.Property(e => e.InstructorId).HasColumnName("InstructorID");
 
@@ -154,6 +158,8 @@ namespace HomeWork_NetCore3._0.Models
             modelBuilder.Entity<Person>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.DateModified).HasDefaultValueSql("('0001-01-01T00:00:00.0000000')");
 
                 entity.Property(e => e.Discriminator)
                     .IsRequired()
