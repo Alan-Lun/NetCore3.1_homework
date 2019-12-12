@@ -24,7 +24,7 @@ namespace HomeWork_NetCore3._0.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Course>>> GetCourse()
         {
-            return await _context.Course.ToListAsync();
+            return await _context.Course.Where(x=>x.IsDeleted==false).ToListAsync();
         }
 
         [HttpGet("courseStudent")]
@@ -45,7 +45,7 @@ namespace HomeWork_NetCore3._0.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Course>> GetCourse(int id)
         {
-            var course = await _context.Course.FindAsync(id);
+            var course = await _context.Course.FirstOrDefaultAsync(x => x.IsDeleted == false && x.CourseId == id);//.FindAsync(id);
 
             if (course == null)
             {
@@ -109,7 +109,8 @@ namespace HomeWork_NetCore3._0.Controllers
                 return NotFound();
             }
 
-            _context.Course.Remove(course);
+            course.IsDeleted = true;
+            _context.Course.Update(course);
             await _context.SaveChangesAsync();
 
             return course;
